@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AWS SDK for JavaScript - Sample Application</title>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.0-rc13.min.js"></script>
+</head>
+<body>
+    <div id="results"></div>
+    <script type="text/javascript">
+        AWS.config.update({
+            accessKeyId: '',
+            secretAccessKey: ''
+        });
+        var bucket = new AWS.S3({
+            params: {
+                Bucket: 'music.bubblehouse.org'
+            }
+        });
+        var results = document.getElementById('results');
+        bucket.listObjects({}, function (err, data) {
+            if (err) {
+                results.innerHTML = 'ERROR: ' + err;
+            } else {
+                var objKeys = "";
+                data.Contents.forEach(function (obj) {
+                    objKeys += obj.Key + "<br>";
+                });
+                results.innerHTML = objKeys;
+            }
+        });
+    </script>
+</body>
+</html>
