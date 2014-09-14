@@ -8,8 +8,11 @@ function listObjectsHandler(err, data) {
         for(var index in sorted_keys){
             var key = sorted_keys[index];
             var value = tree[sorted_keys[index]];
-            if(! value.Key){
-                key += "/"
+            if(value.Key){
+                key = "<a href=\"/" + value.Key + "\">" + key + "</a>";
+            }
+            else {
+                key += "/";
             }
             var row = $('<div class="row"><div class="col-xs-10">' + key + '</div><div class="col-xs-2"></div></div>');
             $('.directory-index').prepend(row);
