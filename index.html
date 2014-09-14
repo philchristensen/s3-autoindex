@@ -17,7 +17,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">S3 Autoindex</a>
+          <a class="navbar-brand" href="#">
+              <img src="assets/images/bucket.png">
+              <span id="application-title">S3 Autoindex</span>
+          </a>
         </div>
         <div class="navbar-collapse collapse">
         </div><!--/.navbar-collapse -->
@@ -36,9 +39,11 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.0-rc13.min.js"></script>
+    <script src="assets/js/app.js"></script>
     
     <script type="text/javascript">
     $(document).ready(function(){
+        $("#application-title").html(location.hostname);
         AWS.config.update({
             accessKeyId: 'AKIAJJFPYBJFNTKHH2SA',
             secretAccessKey: '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'
@@ -48,16 +53,7 @@
                 Bucket: 'music.bubblehouse.org'
             }
         });
-        bucket.listObjects({}, function (err, data) {
-            if (err) {
-                results.innerHTML = 'ERROR: ' + err;
-            } else {
-                data.Contents.forEach(function (obj) {
-                    var row = $('<div class="row"><div class="col-xs-10">' + obj.Key + '</div><div class="col-xs-2"></div></div>');
-                    $('.directory-index').prepend(row);
-                });
-            }
-        });
+        bucket.listObjects({}, listObjectsHandler);
     });
     </script>
 </body>
