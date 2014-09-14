@@ -63,7 +63,7 @@ A new policy is used to grant the index file the rights to list the bucket:
                 "s3:ListBucket"
             ],
             "Resource": [
-                "arn:aws:s3:::music.bubblehouse.org"
+                "arn:aws:s3:::bucket.example.com"
             ]
         },
         {
@@ -73,7 +73,7 @@ A new policy is used to grant the index file the rights to list the bucket:
                 "s3:List*"
             ],
             "Resource": [
-                "arn:aws:s3:::music.bubblehouse.org/*"
+                "arn:aws:s3:::bucket.example.com/*"
             ]
         }
     ]
