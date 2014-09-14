@@ -5,7 +5,32 @@
     
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <style type="text/css" media="screen">
+    .navbar-brand img {
+        max-height: 30px;
+        margin-top: -7px;
+    }
+
+    .directory-index {
+        margin-top: 70px;
+    }
+
+    .directory-index .row {
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        padding: 5px;
+    }
+
+    .directory-index .row:first-child {
+        border-top: 1px solid #ccc;
+    }
+
+    .directory-index .row:hover {
+        background-color: #eee;
+    }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -18,7 +43,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">
-              <img src="assets/images/bucket.png">
+              <img alt="[s3]" src="data:image/png;base64,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" />
               <span id="application-title">S3 Autoindex</span>
           </a>
         </div>
@@ -39,9 +64,86 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.0-rc13.min.js"></script>
-    <script src="assets/js/app.js"></script>
     
     <script type="text/javascript">
+    function listObjectsHandler(err, data) {
+        if (err) {
+            $('.directory-index').prepend($('<p class="error">ERROR: ' + err + '</p>'));
+            return;
+        }
+
+        var listing = getDirectoryMetadata(data);
+        var requested_path = location.hash ? location.hash.split('#')[1] : '';
+        var tree = getBranch(listing, requested_path);
+        if(! tree){
+            $('.directory-index').prepend($('<p class="error">ERROR: Path not found: ' + requested_path + '</p>'));
+            return;
+        }
+    
+        var sorted_keys = Object.keys(tree);
+        sorted_keys.sort();
+        sorted_keys.reverse();
+        for(var index in sorted_keys){
+            var key = sorted_keys[index];
+            if(key == '') continue;
+        
+            var value = tree[sorted_keys[index]];
+            if(value.Key){
+                key = "<a href=\"/" + value.Key + "\">" + key + "</a>";
+            }
+            else {
+                var subpath = requested_path + '/' + key;
+                key = "<a href=\"#" + subpath + "\">" + key + "/</a>";
+            }
+            var row = $('<div class="row directory-item"><div class="col-xs-10">' + key + '</div><div class="col-xs-2"></div></div>');
+            $('.directory-index').prepend(row);
+        }
+    }
+
+    function getBranch(tree, location_hash){
+        var path = location_hash.split('/');
+        var node = tree;
+        for(index in path){
+            var segment = path[index];
+            if(index == 0) continue;
+        
+            if(node[segment] === undefined){
+                return null;
+            }
+            node = node[segment];
+        }
+        return node;
+    }
+
+    function detectBucketName(){
+        var matches = location.hostname.match(/(.*?)\.s3-website-([-\w]*)\.amazonaws\.com/);
+        if(matches){
+            return matches[1];
+        }
+        return location.hostname;
+    }
+
+    function getDirectoryMetadata(data){
+        var tree = {};
+        data.Contents.forEach(function (obj) {
+            var path = obj.Key.split('/');
+            var node = tree;
+            for(index in path){
+                var segment = path[index];
+                if(index == path.length - 1){
+                    node[segment] = obj;
+                }
+                else {
+                    if(node[segment] === undefined){
+                        node[segment] = {}
+                    }
+                    node = node[segment];
+                }
+            }
+        });
+        return tree;
+    }
+    
     $(document).ready(function(){
         $("#application-title").html(location.hostname);
         
