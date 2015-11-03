@@ -70,8 +70,8 @@
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.0-rc13.min.js"></script>
     
     <script type="text/javascript">
-    function listObjectsHandler(err, data) {
-        if (err) {
+    function listObjectsHandler(err, data){
+        if (err){
             $('.directory-index').prepend($('<p class="error">ERROR: ' + err + '</p>'));
             return;
         }
@@ -79,7 +79,7 @@
         var listing = getDirectoryMetadata(data);
         var requested_path = location.hash ? location.hash.split('#')[1] : '';
         var tree = getBranch(listing, requested_path);
-        if(! tree) {
+        if(! tree){
             $('.directory-index').prepend($('<p class="error">ERROR: Path not found: ' + requested_path + '</p>'));
             return;
         }
@@ -87,17 +87,17 @@
         var sorted_keys = Object.keys(tree);
         sorted_keys.sort();
         sorted_keys.reverse();
-        for(var index in sorted_keys) {
+        for(var index in sorted_keys){
             var key = sorted_keys[index];
             if(key == '') continue;
             
             var value = tree[sorted_keys[index]];
             
-            if (basename(document.URL) == value.Key || value.Key == 'index.html' ) {
+            if (basename(document.URL) == value.Key || value.Key == 'index.html'){
                 continue; 
             }
             
-            if(value.Key) {
+            if(value.Key){
                 key = "<a href=\"/" + value.Key + "\">" + key + "</a>";
             }
             else {
@@ -109,18 +109,18 @@
         }
     }
 
-    function basename(path) {
+    function basename(path){
         return path.replace(/\\/g,'/').replace( /.*\//, '' );
     }
 
-    function getBranch(tree, location_hash) {
+    function getBranch(tree, location_hash){
         var path = location_hash.split('/');
         var node = tree;
-        for(index in path) {
+        for(index in path){
             var segment = path[index];
             if(index == 0) continue;
         
-            if(node[segment] === undefined) {
+            if(node[segment] === undefined){
                 return null;
             }
             node = node[segment];
@@ -128,26 +128,26 @@
         return node;
     }
 
-    function detectBucketName() {
+    function detectBucketName(){
         var matches = location.hostname.match(/(.*?)\.s3-website-([-\w]*)\.amazonaws\.com/);
-        if(matches) {
+        if(matches){
             return matches[1];
         }
         return location.hostname;
     }
 
-    function getDirectoryMetadata(data) {
+    function getDirectoryMetadata(data){
         var tree = {};
-        data.Contents.forEach(function (obj) {
+        data.Contents.forEach(function (obj){
             var path = obj.Key.split('/');
             var node = tree;
-            for(index in path) {
+            for(index in path){
                 var segment = path[index];
-                if(index == path.length - 1) {
+                if(index == path.length - 1){
                     node[segment] = obj;
                 }
                 else {
-                    if(node[segment] === undefined) {
+                    if(node[segment] === undefined){
                         node[segment] = {}
                     }
                     node = node[segment];
@@ -157,19 +157,19 @@
         return tree;
     }
     
-    $(document).ready(function() {
+    $(document).ready(function(){
         $("#application-title").html(location.hostname);
         
         var cachedData = null
         
-        $(window).bind( 'hashchange', function(e) {
+        $(window).bind( 'hashchange', function(e){
             $('.directory-item').remove();
             listObjectsHandler(null, cachedData);
         });
         
         AWS.config.update({
-            accessKeyId: '',
-            secretAccessKey: ''
+            accessKeyId: 'AKIAJYXOABU2BSO2HNHA',
+            secretAccessKey: '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'
         });
         
         var bucket = new AWS.S3({
@@ -178,8 +178,8 @@
             }
         });
         
-        bucket.listObjects({}, function(err, data) {
-            if(! err) {
+        bucket.listObjects({}, function(err, data){
+            if(! err){
                 cachedData = data;
             }
             listObjectsHandler(err, data);
