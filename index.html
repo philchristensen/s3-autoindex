@@ -93,7 +93,7 @@
             
             var value = tree[sorted_keys[index]];
             
-            if (basename(document.URL) == value.Key || value.Key == 'index.html'){
+            if (basename(document.URL) == value.Key || value.Key == 'index.html' ){
                 continue; 
             }
             
@@ -162,14 +162,14 @@
         
         var cachedData = null
         
-        $(window).bind( 'hashchange', function(e){
+        $(window).bind('hashchange', function(e){
             $('.directory-item').remove();
             listObjectsHandler(null, cachedData);
         });
         
         AWS.config.update({
-            accessKeyId: 'AKIAJYXOABU2BSO2HNHA',
-            secretAccessKey: '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'
+            accessKeyId: '',
+            secretAccessKey: ''
         });
         
         var bucket = new AWS.S3({
